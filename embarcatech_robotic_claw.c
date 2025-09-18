@@ -27,7 +27,7 @@
 #define RED_LED_PIN 13    // GPIO pin for the red LED
 #define GREEN_LED_PIN 11  // GPIO pin for the green LED
 #define BUTTONA_PIN 5    // GPIO pin for the emergency stop button
-#define BUTTONB_PIN 22    // GPIO pin for the claw open/close button
+#define BUTTONB_PIN 6   // GPIO pin for the claw open/close button
 
 /* Function prototypes*/
 long map(long x, long in_min, long in_max, long out_min, long out_max);
@@ -37,7 +37,7 @@ void gpio_irq_handler(uint gpio, uint32_t events);
 /* Global variables */
 
 volatile bool claw_open = false; // State of the claw (open or closed)
-volatile bool emergency_stop = false; // Emergency stop flag
+volatile bool emergency_stop = true; // Emergency stop flag
 
 
 int main()
@@ -85,6 +85,8 @@ int main()
 
     /* Set initial positions */
     pwm_set_gpio_level(CLAW_PIN, CLAW_CLOSE_PULSE); // Close the claw
+
+
     uint16_t last_joystick_value_x = 0;
 
 
